@@ -90,7 +90,7 @@ export const productCatalog: Record<string, CatalogProduct> = {
     concerns: ["Dryness", "Damage", "Oiliness"],
     ingredients: haircareIngredientMap["custom-shampoo"],
     preferences: "Fragrance free.",
-    frequency: "Every 12 weeks (recommended)",
+    frequency: "Every 4 weeks (recommended)",
     discountLabel: "60% off first subscription order",
   },
 
