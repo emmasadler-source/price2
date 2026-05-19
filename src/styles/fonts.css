@@ -1,0 +1,80 @@
+/* Google Font Import — Noto Serif fallback for Saol Text */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;1,400&display=swap');
+
+/* Simplon Norm — Body (CDN) */
+@font-face {
+  font-family: 'Simplon Norm';
+  src: url('https://cdn2.prose.com/build/client/fonts/SimplonNorm-Light-WebS.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Simplon Norm';
+  src: url('https://cdn2.prose.com/build/client/fonts/SimplonNorm-Regular-WebS.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Simplon Norm';
+  src: url('https://cdn2.prose.com/build/client/fonts/SimplonNorm-Medium-WebS.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Simplon Norm';
+  src: url('https://cdn2.prose.com/build/client/fonts/SimplonNorm-Bold-WebS.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Simplon Mono — Labels (CDN) */
+@font-face {
+  font-family: 'Simplon Mono';
+  src: url('https://cdn2.prose.com/build/client/fonts/SimplonMono-Regular-WebS.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Simplon Mono';
+  src: url('https://cdn2.prose.com/build/client/fonts/SimplonMono-Medium-WebS.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Saol Text — Headings (local) */
+@font-face {
+  font-family: 'Saol Text';
+  src: url('../fonts/Saol Text Light.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Global font family overrides to fix underscore font names */
+[class*="Simplon_Norm"],
+[class*="Simplon Norm"],
+[style*="Simplon_Norm"],
+[style*="Simplon Norm"] {
+  font-family: 'Simplon Norm', sans-serif !important;
+}
+
+[class*="Simplon_Mono"],
+[class*="Simplon Mono"],
+[style*="Simplon_Mono"],
+[style*="Simplon Mono"] {
+  font-family: 'Simplon Mono', monospace !important;
+}
+
+[class*="Saol_Text"],
+[class*="Saol Text"],
+[style*="Saol_Text"],
+[style*="Saol Text"] {
+  font-family: 'Saol Text', 'Noto Serif', serif !important;
+  font-weight: 300 !important;
+}
