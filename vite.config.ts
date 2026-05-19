@@ -20,7 +20,7 @@ function figmaAssetPlugin(): Plugin {
 }
 
 export default defineConfig({
-  base: '/Routine/',
+  base: '/price2/',
   plugins: [
     figmaAssetPlugin(),
     react(),

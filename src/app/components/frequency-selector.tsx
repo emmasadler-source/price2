@@ -52,8 +52,8 @@ export function FrequencySelector({
         {/* "Added to cart" label with green checkmark */}
         <div className="absolute top-[-8px] left-[8px] bg-white px-[4px] z-10 flex items-center gap-[4px]">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="6" fill="#4d523c" />
-            <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            <rect width="11.2812" height="11.2812" rx="5.64062" fill="#B9C2A6" />
+            <path d="M2.50684 6.26725L4.59596 8.7742C5.29233 7.38145 7.1029 4.17813 8.7742 2.50684" stroke="white" strokeWidth="0.626736" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <p className="font-['Simplon Norm',sans-serif] font-medium text-[10px] text-[#4d523c] leading-[1.5]">
             Added to cart
@@ -76,10 +76,9 @@ export function FrequencySelector({
               </p>
             </div>
 
-            {/* Separator + Chevron - only show if interactive */}
+            {/* Chevron - only show if interactive */}
             {interactive && (
               <>
-                <div className="w-0 h-[36px] border-l border-[#e2d9c2]" />
                 <motion.svg
                   width="10"
                   height="10"
@@ -155,7 +154,7 @@ export function FrequencySelector({
       </div>
 
       {/* Bottom pricing row */}
-      <div className="flex items-center justify-between px-[12px] w-full">
+      <div className="flex items-center justify-between px-[12px] pt-[8px] w-full">
         {isSubscription ? (
           <>
             <p className="font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-[10px] tracking-[0.2px]">

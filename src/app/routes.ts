@@ -16,5 +16,5 @@ export const router = createBrowserRouter([
     ],
   },
 ], {
-  basename: "/Routine",
+  basename: "/price2",
 });

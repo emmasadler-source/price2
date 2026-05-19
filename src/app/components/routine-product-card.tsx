@@ -167,9 +167,6 @@ function FrequencySelector({ price, originalPrice, onOpenChange, onFrequencyChan
                 <p className="relative shrink-0 text-[12px] text-left tracking-[0.24px] w-full">{getLabelForOption(selected)}</p>
               </div>
 
-              {/* Divider line */}
-              <div className="w-px h-[36px] bg-[#e2d9c2] shrink-0" />
-
               {/* Arrow icon */}
               <div className="flex items-center justify-center shrink-0">
                 <svg
@@ -187,8 +184,8 @@ function FrequencySelector({ price, originalPrice, onOpenChange, onFrequencyChan
             {/* Added to cart label with green checkmark */}
             <div className="absolute bg-white content-stretch flex items-center gap-[4px] left-[8px] px-[4px] top-[-8px]">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="6" fill="#4d523c" />
-                <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                <rect width="11.2812" height="11.2812" rx="5.64062" fill="#B9C2A6" />
+                <path d="M2.50684 6.26725L4.59596 8.7742C5.29233 7.38145 7.1029 4.17813 8.7742 2.50684" stroke="white" strokeWidth="0.626736" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">
                 Added to cart
@@ -217,7 +214,7 @@ function FrequencySelector({ price, originalPrice, onOpenChange, onFrequencyChan
       )}
 
       {/* Bottom pricing row */}
-      <div className="content-stretch flex items-center justify-between px-[12px] pt-[4px] relative shrink-0 w-full">
+      <div className="content-stretch flex items-center justify-between px-[12px] pt-[8px] relative shrink-0 w-full">
         {isSubscription ? (
           <>
             <p className="font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-[10px] tracking-[0.2px]">
@@ -269,9 +266,6 @@ function AddedToCart({ type, price, originalPrice }: AddedToCartProps) {
             </p>
           </div>
 
-          {/* Divider line */}
-          <div className="w-px h-[36px] bg-[#e2d9c2] shrink-0" />
-
           {/* Arrow icon */}
           <div className="flex items-center justify-center shrink-0">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="rotate-45">
@@ -283,15 +277,15 @@ function AddedToCart({ type, price, originalPrice }: AddedToCartProps) {
         {/* Added to cart label with green checkmark */}
         <div className="absolute bg-white content-stretch flex items-center gap-[4px] left-[8px] px-[4px] top-[-8px]">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="6" fill="#4d523c" />
-            <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            <rect width="11.2812" height="11.2812" rx="5.64062" fill="#B9C2A6" />
+            <path d="M2.50684 6.26725L4.59596 8.7742C5.29233 7.38145 7.1029 4.17813 8.7742 2.50684" stroke="white" strokeWidth="0.626736" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">Added to cart</p>
         </div>
       </div>
 
       {/* Bottom pricing row */}
-      <div className="content-stretch flex items-center justify-between px-[12px] relative shrink-0 w-full">
+      <div className="content-stretch flex items-center justify-between px-[12px] pt-[8px] relative shrink-0 w-full">
         {isSubscription ? (
           <>
             <p className="font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-[10px] tracking-[0.2px]">
@@ -336,15 +330,15 @@ function AddedToCartAccessory({ price }: { price: number }) {
         {/* Added to cart label with green checkmark */}
         <div className="absolute bg-white content-stretch flex items-center gap-[4px] left-[8px] px-[4px] top-[-8px]">
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="6" fill="#4d523c" />
-            <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+            <rect width="11.2812" height="11.2812" rx="5.64062" fill="#B9C2A6" />
+            <path d="M2.50684 6.26725L4.59596 8.7742C5.29233 7.38145 7.1029 4.17813 8.7742 2.50684" stroke="white" strokeWidth="0.626736" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
           <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">Added to cart</p>
         </div>
       </div>
 
       {/* Bottom pricing row */}
-      <div className="content-stretch flex items-center justify-end px-[12px] relative shrink-0 w-full">
+      <div className="content-stretch flex items-center justify-end px-[12px] pt-[8px] relative shrink-0 w-full">
         <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] text-[#161716] text-[14px]">
           ${price.toFixed(2)}
         </p>
