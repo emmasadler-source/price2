@@ -47,149 +47,140 @@ export function FrequencySelector({
   const isSubscription = selectedOption.price < selectedOption.originalPrice;
 
   return (
-    <div className="w-[295px] rounded-[10px] border border-[#e2d9c2] relative">
-      {/* "Added to cart" label - positioned on top of border */}
-      <div className="absolute top-[-8px] left-[8px] bg-white px-[4px] z-10">
-        <p className="font-['Simplon Norm',sans-serif] font-medium text-[10px] text-[#4d523c] leading-[1.5]">
-          Added to cart
-        </p>
-      </div>
-
-      {/* Closed State - Button */}
-      <button
-        onClick={handleToggle}
-        disabled={!interactive}
-        className={`w-full px-[12px] py-[16px] flex flex-col gap-[4px] ${
-          interactive ? "cursor-pointer hover:bg-[#fafaf8]" : "cursor-default"
-        } transition-colors`}
-      >
-        <div className="flex gap-[12px] items-center w-full">
-          {/* Product Info */}
-          <div className="flex flex-col gap-[4px] items-start flex-1 text-left">
-            <p className="font-['Simplon Norm',sans-serif] text-[12px] text-[#4d523c] tracking-[0.24px] leading-[1.5]">
-              {selectedOption.label}
-            </p>
-            {/* Show sublabel for subscription options */}
-            {isSubscription && (
-              <p className="font-['Simplon Norm',sans-serif] font-normal text-[10px] text-[#4d523c] tracking-[0.2px] leading-[1.5]">
-                60% off first subscription order
-              </p>
-            )}
-            {/* One-time purchase incentive message */}
-            {selectedOption.value === "buy-once" && isSubscription === false && interactive && (
-              <div className="bg-[#ecff92] px-[6px] py-[2px] rounded-[4px]">
-                <p className="font-['Simplon Norm',sans-serif] text-[10px] text-[#323429] tracking-[0.2px] leading-[1.5]">
-                  Get 60% when you subscribe
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Price */}
-          <div className="flex flex-col gap-[4px] items-end shrink-0">
-            {isSubscription ? (
-              <>
-                <div className="bg-[#ecff92] px-[4px] rounded-[4px] flex items-center justify-center">
-                  <p className="font-['Simplon Norm',sans-serif] font-medium text-[14px] text-[#161716] leading-[1.5]">
-                    ${selectedOption.price.toFixed(2)}
-                  </p>
-                </div>
-                <p className="font-['Simplon Norm',sans-serif] text-[10px] text-[#6c6c6c] line-through tracking-[0.2px] leading-[1.5]">
-                  ${selectedOption.originalPrice.toFixed(2)}
-                </p>
-              </>
-            ) : (
-              <p className="font-['Simplon Norm',sans-serif] font-medium text-[14px] text-[#161716] leading-[1.5]">
-                ${selectedOption.price.toFixed(2)}
-              </p>
-            )}
-          </div>
-
-          {/* Separator + Chevron - only show if interactive */}
-          {interactive && (
-            <>
-              <div className="w-0 h-[36px] border-l border-[#e2d9c2]" />
-              <motion.svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                className="shrink-0"
-                animate={{ rotate: isOpen ? -135 : 45 }}
-                transition={{ duration: 0.2 }}
-              >
-                <path
-                  d="M8.5 1.5V8.5H1.5"
-                  stroke="#323429"
-                  strokeLinecap="round"
-                />
-              </motion.svg>
-            </>
-          )}
+    <div className="w-[295px] flex flex-col gap-[4px] relative">
+      <div className="rounded-[10px] border border-[#e2d9c2] relative">
+        {/* "Added to cart" label with green checkmark */}
+        <div className="absolute top-[-8px] left-[8px] bg-white px-[4px] z-10 flex items-center gap-[4px]">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <circle cx="6" cy="6" r="6" fill="#4d523c" />
+            <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <p className="font-['Simplon Norm',sans-serif] font-medium text-[10px] text-[#4d523c] leading-[1.5]">
+            Added to cart
+          </p>
         </div>
-      </button>
 
-      {/* Expanded Options */}
-      <AnimatePresence>
-        {isOpen && interactive && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-[#e2d9c2]"
-          >
-            <div className="flex flex-col">
-              {options.map((option, index) => {
-                const isSelected = option.value === selectedValue;
-                const isOptionSubscription = option.price < option.originalPrice;
+        {/* Closed State - Button */}
+        <button
+          onClick={handleToggle}
+          disabled={!interactive}
+          className={`w-full px-[12px] py-[16px] flex flex-col gap-[4px] ${
+            interactive ? "cursor-pointer hover:bg-[#fafaf8]" : "cursor-default"
+          } transition-colors rounded-[10px]`}
+        >
+          <div className="flex gap-[12px] items-center w-full">
+            {/* Product Info */}
+            <div className="flex flex-col items-start flex-1 text-left">
+              <p className="font-['Simplon Norm',sans-serif] text-[12px] text-[#4d523c] tracking-[0.24px] leading-[1.5]">
+                {selectedOption.label}
+              </p>
+            </div>
 
-                return (
-                  <button
-                    key={option.value}
-                    onClick={() => handleSelect(option.value)}
-                    className={`w-full px-[12px] py-[12px] min-h-[56px] flex gap-[12px] items-center hover:bg-[#fafaf8] transition-colors ${
-                      index !== 0 ? "border-t border-[#e2d9c2]" : ""
-                    }`}
-                  >
-                    {/* Radio button */}
-                    <div className="size-[16px] rounded-full border-2 border-[#323429] flex items-center justify-center shrink-0">
-                      {isSelected && (
-                        <div className="size-[8px] rounded-full bg-[#323429]" />
-                      )}
-                    </div>
+            {/* Separator + Chevron - only show if interactive */}
+            {interactive && (
+              <>
+                <div className="w-0 h-[36px] border-l border-[#e2d9c2]" />
+                <motion.svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 10 10"
+                  fill="none"
+                  className="shrink-0"
+                  animate={{ rotate: isOpen ? -135 : 45 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <path
+                    d="M8.5 1.5V8.5H1.5"
+                    stroke="#323429"
+                    strokeLinecap="round"
+                  />
+                </motion.svg>
+              </>
+            )}
+          </div>
+        </button>
 
-                    {/* Option info */}
-                    <div className="flex flex-col gap-[2px] items-start flex-1 text-left">
-                      <p className="font-['Simplon Norm',sans-serif] text-[12px] text-[#4d523c] tracking-[0.24px] leading-[1.5]">
-                        {option.label}
-                      </p>
-                    </div>
+        {/* Expanded Options */}
+        <AnimatePresence>
+          {isOpen && interactive && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="overflow-hidden border-t border-[#e2d9c2]"
+            >
+              <div className="flex flex-col">
+                {options.map((option, index) => {
+                  const isSelected = option.value === selectedValue;
+                  const isOptionSubscription = option.price < option.originalPrice;
 
-                    {/* Option price */}
-                    <div className="flex flex-col gap-[2px] items-end shrink-0">
-                      {isOptionSubscription ? (
-                        <>
+                  return (
+                    <button
+                      key={option.value}
+                      onClick={() => handleSelect(option.value)}
+                      className={`w-full px-[12px] py-[12px] min-h-[56px] flex gap-[12px] items-center hover:bg-[#fafaf8] transition-colors ${
+                        index !== 0 ? "border-t border-[#e2d9c2]" : ""
+                      }`}
+                    >
+                      {/* Radio button */}
+                      <div className="size-[16px] rounded-full border-2 border-[#323429] flex items-center justify-center shrink-0">
+                        {isSelected && (
+                          <div className="size-[8px] rounded-full bg-[#323429]" />
+                        )}
+                      </div>
+
+                      {/* Option info */}
+                      <div className="flex flex-col gap-[2px] items-start flex-1 text-left">
+                        <p className="font-['Simplon Norm',sans-serif] text-[12px] text-[#4d523c] tracking-[0.24px] leading-[1.5]">
+                          {option.label}
+                        </p>
+                      </div>
+
+                      {/* Option price - only for one-time purchase */}
+                      {!isOptionSubscription && (
+                        <div className="flex flex-col gap-[2px] items-end shrink-0">
                           <p className="font-['Simplon Norm',sans-serif] font-medium text-[14px] text-[#161716] leading-[1.5]">
                             ${option.price.toFixed(2)}
                           </p>
-                          <p className="font-['Simplon Norm',sans-serif] text-[10px] text-[#6c6c6c] line-through tracking-[0.2px] leading-[1.5]">
-                            ${option.originalPrice.toFixed(2)}
-                          </p>
-                        </>
-                      ) : (
-                        <p className="font-['Simplon Norm',sans-serif] font-medium text-[14px] text-[#161716] leading-[1.5]">
-                          ${option.price.toFixed(2)}
-                        </p>
+                        </div>
                       )}
-                    </div>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Bottom pricing row */}
+      <div className="flex items-center justify-between px-[12px] w-full">
+        {isSubscription ? (
+          <>
+            <p className="font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-[10px] tracking-[0.2px]">
+              60% off first subscription order
+            </p>
+            <div className="flex items-center gap-[6px]">
+              <p className="font-['Simplon Norm',sans-serif] text-[10px] text-[#6c6c6c] line-through tracking-[0.2px] leading-[1.5]">
+                ${selectedOption.originalPrice.toFixed(2)}
+              </p>
+              <div className="bg-[#ecff92] px-[4px] rounded-[4px] flex items-center justify-center">
+                <p className="font-['Simplon Norm',sans-serif] font-medium text-[14px] text-[#161716] leading-[1.5]">
+                  ${selectedOption.price.toFixed(2)}
+                </p>
+              </div>
             </div>
-          </motion.div>
+          </>
+        ) : (
+          <>
+            <div />
+            <p className="font-['Simplon Norm',sans-serif] font-medium text-[14px] text-[#161716] leading-[1.5]">
+              ${selectedOption.price.toFixed(2)}
+            </p>
+          </>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }

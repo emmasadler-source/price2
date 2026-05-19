@@ -141,7 +141,7 @@ function FrequencySelector({ price, originalPrice, onOpenChange, onFrequencyChan
 
   const getLabelForOption = (option: FrequencyOption): string => {
     switch (option) {
-      case "4-weeks": return "Every 4 weeks (recommended)";
+      case "4-weeks": return "Every 4 weeks [recommended]";
       case "8-weeks": return "Every 8 weeks";
       case "12-weeks": return "Every 12 weeks";
       case "one-time": return "One-time purchase";
@@ -161,40 +161,14 @@ function FrequencySelector({ price, originalPrice, onOpenChange, onFrequencyChan
         <div aria-hidden="true" className={`absolute border border-[#e2d9c2] border-solid inset-0 pointer-events-none ${isOpen ? "rounded-tl-[10px] rounded-tr-[10px]" : "rounded-[10px]"}`} />
         <div className="flex flex-col items-start justify-center size-full">
           <div className="content-stretch flex flex-col gap-[4px] items-start justify-center px-[12px] py-[16px] relative w-full">
-            {/* Top row */}
+            {/* Top row: label + chevron */}
             <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
-          {/* Product info */}
-          <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative gap-[4px] font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-left">
-            <p className="relative shrink-0 text-[12px] text-left tracking-[0.24px] w-full">{getLabelForOption(selected)}</p>
-            {isSubscription ? (
-              <p className="min-w-full relative shrink-0 text-[10px] text-left tracking-[0.2px] w-[min-content]">60% off first subscription order</p>
-            ) : (
-              <div className="bg-[#ecff92] content-stretch flex items-center justify-center px-[4px] relative rounded-[4px] shrink-0">
-                <p className="font-['Simplon Norm',sans-serif] leading-[1.5] relative shrink-0 text-[#6c6c6c] text-[10px] tracking-[0.2px] whitespace-nowrap">Get 60% when you subscribe</p>
+              <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-left">
+                <p className="relative shrink-0 text-[12px] text-left tracking-[0.24px] w-full">{getLabelForOption(selected)}</p>
               </div>
-            )}
-          </div>
 
-          {/* Price */}
-          <div className="content-stretch flex flex-col gap-[4px] items-end leading-[1.5] relative shrink-0 whitespace-nowrap">
-            <div className={`content-stretch flex items-center justify-center px-[4px] relative rounded-[4px] shrink-0 ${isSubscription ? "bg-[#ecff92]" : ""}`}>
-              <p className="font-['Simplon Norm',sans-serif] font-medium relative shrink-0 text-[#161716] text-[14px]">
-                ${displayPrice.toFixed(2)}
-              </p>
-            </div>
-            {isSubscription ? (
-              <div className="content-stretch flex items-center justify-center px-[4px] relative shrink-0">
-                <p className="decoration-solid font-['Simplon Norm',sans-serif] leading-[1.5] line-through relative shrink-0 text-[#6c6c6c] text-[10px] tracking-[0.2px]">
-                  ${originalPrice.toFixed(2)}
-                </p>
-              </div>
-            ) : (
-              <div className="content-stretch flex items-center justify-center px-[4px] shrink-0" />
-            )}
-          </div>
-
-          {/* Divider line */}
-          <div className="w-px h-[36px] bg-[#e2d9c2] shrink-0" />
+              {/* Divider line */}
+              <div className="w-px h-[36px] bg-[#e2d9c2] shrink-0" />
 
               {/* Arrow icon */}
               <div className="flex items-center justify-center shrink-0">
@@ -210,8 +184,12 @@ function FrequencySelector({ price, originalPrice, onOpenChange, onFrequencyChan
               </div>
             </div>
 
-            {/* Added to cart label */}
-            <div className="absolute bg-white content-stretch flex items-center justify-center left-[8px] px-[4px] top-[-8px]">
+            {/* Added to cart label with green checkmark */}
+            <div className="absolute bg-white content-stretch flex items-center gap-[4px] left-[8px] px-[4px] top-[-8px]">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <circle cx="6" cy="6" r="6" fill="#4d523c" />
+                <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
               <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">
                 Added to cart
               </p>
@@ -237,6 +215,34 @@ function FrequencySelector({ price, originalPrice, onOpenChange, onFrequencyChan
           />
         </div>
       )}
+
+      {/* Bottom pricing row */}
+      <div className="content-stretch flex items-center justify-between px-[12px] pt-[4px] relative shrink-0 w-full">
+        {isSubscription ? (
+          <>
+            <p className="font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-[10px] tracking-[0.2px]">
+              60% off first subscription order
+            </p>
+            <div className="flex items-center gap-[6px]">
+              <p className="decoration-solid font-['Simplon Norm',sans-serif] leading-[1.5] line-through text-[#6c6c6c] text-[10px] tracking-[0.2px]">
+                ${originalPrice.toFixed(2)}
+              </p>
+              <div className="bg-[#ecff92] flex items-center justify-center px-[4px] rounded-[4px]">
+                <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] text-[#161716] text-[14px]">
+                  ${displayPrice.toFixed(2)}
+                </p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div />
+            <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] text-[#161716] text-[14px]">
+              ${displayPrice.toFixed(2)}
+            </p>
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -250,59 +256,66 @@ type AddedToCartProps = {
 
 function AddedToCart({ type, price, originalPrice }: AddedToCartProps) {
   const isSubscription = type === "subscription";
-  
+
   return (
-    <div className="content-stretch flex flex-col gap-[4px] items-center justify-center px-[12px] py-[16px] relative rounded-[10px] w-[295px]">
-      <div aria-hidden="true" className="absolute border border-[#e2d9c2] border-solid inset-0 pointer-events-none rounded-[10px]" />
-      <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
-        <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative gap-[4px] font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c]">
-          <p className="relative shrink-0 text-[12px] tracking-[0.24px] w-full">
-            {isSubscription ? "Every 4 weeks (recommended)" : "One-time purchase"}
-          </p>
-          {isSubscription && (
-            <p className="min-w-full relative shrink-0 text-[10px] tracking-[0.2px] w-[min-content]">60% off first order</p>
-          )}
-          {!isSubscription && (
-            <div className="bg-[#ecff92] content-stretch flex items-center justify-center px-[4px] relative rounded-[4px] shrink-0">
-              <p className="font-['Simplon Norm',sans-serif] leading-[1.5] relative shrink-0 text-[#6c6c6c] text-[10px] tracking-[0.2px] whitespace-nowrap">Get 60% when you subscribe</p>
-            </div>
-          )}
-        </div>
-        <div className="content-stretch flex flex-col relative shrink-0 gap-[4px] items-end">
-          <div className={`content-stretch flex items-center justify-center px-[4px] relative rounded-[4px] shrink-0 ${isSubscription ? "bg-[#ecff92]" : ""}`}>
-            <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#161716] text-[14px] text-right whitespace-nowrap">${price.toFixed(2)}</p>
+    <div className="content-stretch flex flex-col gap-[4px] relative w-[295px]">
+      {/* Main box */}
+      <div className="content-stretch flex flex-col items-center justify-center px-[12px] py-[16px] relative rounded-[10px]">
+        <div aria-hidden="true" className="absolute border border-[#e2d9c2] border-solid inset-0 pointer-events-none rounded-[10px]" />
+        <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
+          <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c]">
+            <p className="relative shrink-0 text-[12px] tracking-[0.24px] w-full">
+              {isSubscription ? "Every 4 weeks [recommended]" : "One-time purchase"}
+            </p>
           </div>
-          {isSubscription && (
-            <div className="content-stretch flex items-center justify-center px-[4px] shrink-0 relative">
-              <p className="decoration-solid font-['Simplon Norm',sans-serif] leading-[1.5] line-through relative shrink-0 text-[#6c6c6c] text-[10px] text-right tracking-[0.2px] whitespace-nowrap">${originalPrice.toFixed(2)}</p>
-            </div>
-          )}
-        </div>
-        <div className="flex h-[36px] items-center justify-center relative shrink-0 w-0">
-          <div className="flex-none rotate-90">
-            <div className="h-0 relative w-[36px]">
-              <div className="absolute inset-[-1px_0_0_0]">
-                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 36 1">
-                  <line stroke="#E2D9C2" x2="36" y1="0.5" y2="0.5" />
-                </svg>
-              </div>
-            </div>
+
+          {/* Divider line */}
+          <div className="w-px h-[36px] bg-[#e2d9c2] shrink-0" />
+
+          {/* Arrow icon */}
+          <div className="flex items-center justify-center shrink-0">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="rotate-45">
+              <path d="M8.5 1.5V8.5H1.5" stroke="#323429" strokeLinecap="round" />
+            </svg>
           </div>
         </div>
-        <div className="flex items-center justify-center relative shrink-0 size-[9.899px]">
-          <div className="flex-none rotate-45">
-            <div className="relative size-[7px]">
-              <div className="absolute inset-[-7.14%]">
-                <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 8 8">
-                  <path d="M7.5 0.5V7.5H0.5" stroke="#323429" strokeLinecap="round" />
-                </svg>
-              </div>
-            </div>
-          </div>
+
+        {/* Added to cart label with green checkmark */}
+        <div className="absolute bg-white content-stretch flex items-center gap-[4px] left-[8px] px-[4px] top-[-8px]">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <circle cx="6" cy="6" r="6" fill="#4d523c" />
+            <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">Added to cart</p>
         </div>
       </div>
-      <div className="absolute bg-white content-stretch flex items-center justify-center left-[8px] px-[4px] top-[-8px]">
-        <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">Added to cart</p>
+
+      {/* Bottom pricing row */}
+      <div className="content-stretch flex items-center justify-between px-[12px] relative shrink-0 w-full">
+        {isSubscription ? (
+          <>
+            <p className="font-['Simplon Norm',sans-serif] leading-[1.5] text-[#4d523c] text-[10px] tracking-[0.2px]">
+              60% off first subscription order
+            </p>
+            <div className="flex items-center gap-[6px]">
+              <p className="decoration-solid font-['Simplon Norm',sans-serif] leading-[1.5] line-through text-[#6c6c6c] text-[10px] tracking-[0.2px]">
+                ${originalPrice.toFixed(2)}
+              </p>
+              <div className="bg-[#ecff92] flex items-center justify-center px-[4px] rounded-[4px]">
+                <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] text-[#161716] text-[14px]">
+                  ${price.toFixed(2)}
+                </p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div />
+            <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] text-[#161716] text-[14px]">
+              ${price.toFixed(2)}
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
@@ -311,20 +324,30 @@ function AddedToCart({ type, price, originalPrice }: AddedToCartProps) {
 // ─── Added to Cart Accessory Component ────────────────────
 function AddedToCartAccessory({ price }: { price: number }) {
   return (
-    <div className="content-stretch flex flex-col gap-[4px] items-center justify-center px-[12px] py-[16px] relative rounded-[10px] w-[295px]">
-      <div aria-hidden="true" className="absolute border border-[#e2d9c2] border-solid inset-0 pointer-events-none rounded-[10px]" />
-      <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
-        <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative">
-          <p className="font-['Simplon Norm',sans-serif] leading-[1.5] relative shrink-0 text-[#4d523c] text-[12px] tracking-[0.24px] w-full">One-time purchase</p>
-        </div>
-        <div className="content-stretch flex flex-col relative shrink-0 items-center justify-center">
-          <div className="content-stretch flex items-center justify-center px-[4px] relative rounded-[4px] shrink-0">
-            <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#161716] text-[14px] text-right whitespace-nowrap">${price.toFixed(2)}</p>
+    <div className="content-stretch flex flex-col gap-[4px] relative w-[295px]">
+      {/* Main box */}
+      <div className="content-stretch flex flex-col items-center justify-center px-[12px] py-[16px] relative rounded-[10px]">
+        <div aria-hidden="true" className="absolute border border-[#e2d9c2] border-solid inset-0 pointer-events-none rounded-[10px]" />
+        <div className="content-stretch flex gap-[12px] items-center relative shrink-0 w-full">
+          <div className="content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-px relative">
+            <p className="font-['Simplon Norm',sans-serif] leading-[1.5] relative shrink-0 text-[#4d523c] text-[12px] tracking-[0.24px] w-full">One-time purchase</p>
           </div>
         </div>
+        {/* Added to cart label with green checkmark */}
+        <div className="absolute bg-white content-stretch flex items-center gap-[4px] left-[8px] px-[4px] top-[-8px]">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <circle cx="6" cy="6" r="6" fill="#4d523c" />
+            <path d="M3.5 6L5.5 8L8.5 4.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">Added to cart</p>
+        </div>
       </div>
-      <div className="absolute bg-white content-stretch flex items-center justify-center left-[8px] px-[4px] top-[-8px]">
-        <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] relative shrink-0 text-[#4d523c] text-[10px] whitespace-nowrap">Added to cart</p>
+
+      {/* Bottom pricing row */}
+      <div className="content-stretch flex items-center justify-end px-[12px] relative shrink-0 w-full">
+        <p className="font-['Simplon Norm',sans-serif] font-medium leading-[1.5] text-[#161716] text-[14px]">
+          ${price.toFixed(2)}
+        </p>
       </div>
     </div>
   );

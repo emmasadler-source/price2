@@ -49,7 +49,7 @@ function DropdownRow({ label, value, price, originalPrice, isSelected, isLast, o
         }`}
       />
       <button onClick={onClick} className="flex flex-row items-center size-full cursor-pointer hover:bg-[#f9f9f9] transition-colors">
-        <div className={`content-stretch flex gap-[8px] items-center px-[12px] py-[16px] relative w-full ${!isSubscription ? "min-h-[71px]" : ""}`}>
+        <div className="content-stretch flex gap-[8px] items-center px-[12px] py-[16px] relative w-full">
           {/* Radio Button */}
           <RadioButton checked={isSelected} />
 
@@ -60,24 +60,14 @@ function DropdownRow({ label, value, price, originalPrice, isSelected, isLast, o
             </p>
           </div>
 
-          {/* Price */}
-          <div className="content-stretch flex flex-col gap-[4px] items-end leading-[1.5] relative shrink-0 text-right whitespace-nowrap" data-name="price">
-            {/* Highlighted Price */}
-            <div className={`content-stretch flex font-['Simplon_Norm',sans-serif] font-medium items-center justify-center px-[4px] relative rounded-[4px] shrink-0 text-[#161716] text-[14px] ${
-              isSubscription ? "bg-[#ecff92]" : ""
-            }`} data-name="highlight">
-              <p className="relative shrink-0">$</p>
-              <p className="relative shrink-0">{price.toFixed(2)}</p>
-            </div>
-
-            {/* Original Price (strikethrough) */}
-            {isSubscription && originalPrice ? (
-              <div className="content-stretch flex font-['Simplon_Norm',sans-serif] items-center justify-center line-through px-[4px] relative shrink-0 text-[#6c6c6c] text-[10px] tracking-[0.2px]">
-                <p className="[text-decoration-skip-ink:none] decoration-solid relative shrink-0">$</p>
-                <p className="[text-decoration-skip-ink:none] decoration-solid relative shrink-0">{originalPrice.toFixed(2)}</p>
+          {/* Price - only show for one-time purchase */}
+          {!isSubscription && (
+            <div className="content-stretch flex flex-col gap-[4px] items-end leading-[1.5] relative shrink-0 text-right whitespace-nowrap" data-name="price">
+              <div className="content-stretch flex font-['Simplon_Norm',sans-serif] font-medium items-center justify-center px-[4px] relative rounded-[4px] shrink-0 text-[#161716] text-[14px]" data-name="highlight">
+                <p className="relative shrink-0">${price.toFixed(2)}</p>
               </div>
-            ) : null}
-          </div>
+            </div>
+          )}
         </div>
       </button>
     </div>
